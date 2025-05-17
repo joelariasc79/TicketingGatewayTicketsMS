@@ -1,0 +1,126 @@
+2025-05-17T00:10:41.199-05:00 DEBUG 59793 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/departments
+2025-05-17T00:10:41.437-05:00 DEBUG 59793 --- [http-nio-8383-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T00:10:41.479-05:00 DEBUG 59793 --- [http-nio-8383-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/admin/departments] with attributes [permitAll]
+2025-05-17T00:10:41.484-05:00 DEBUG 59793 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/departments
+2025-05-17T00:10:41.530-05:00 DEBUG 59793 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-05-17T00:10:41.537-05:00 DEBUG 59793 --- [http-nio-8383-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T00:10:41.541-05:00 DEBUG 59793 --- [http-nio-8383-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /error] with attributes [permitAll]
+2025-05-17T00:10:41.542-05:00 DEBUG 59793 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /error
+2025-05-17T00:10:59.141-05:00 DEBUG 59793 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/departments
+2025-05-17T00:10:59.152-05:00 DEBUG 59793 --- [http-nio-8383-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T00:10:59.155-05:00 DEBUG 59793 --- [http-nio-8383-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/admin/departments] with attributes [permitAll]
+2025-05-17T00:10:59.156-05:00 DEBUG 59793 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/departments
+2025-05-17T00:10:59.183-05:00 DEBUG 59793 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-05-17T00:10:59.185-05:00 DEBUG 59793 --- [http-nio-8383-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T00:10:59.185-05:00 DEBUG 59793 --- [http-nio-8383-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /error] with attributes [permitAll]
+2025-05-17T00:10:59.185-05:00 DEBUG 59793 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /error
+2025-05-17T00:11:40.258-05:00  INFO 59793 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-17T01:35:26.348-05:00  INFO 92977 --- [restartedMain] c.ticketing.TicketingGatewayApplication  : Starting TicketingGatewayApplication using Java 21.0.6 with PID 92977 (/Users/joel_arias/Desktop/SynergesticIT/Training/Second/SpringBoot/SpringBoot/Assigments/TicketingGatewayTicketsMS/target/classes started by joel_arias in /Users/joel_arias/Desktop/SynergesticIT/Training/Second/SpringBoot/SpringBoot/Assigments/TicketingGatewayTicketsMS)
+2025-05-17T01:35:26.350-05:00  INFO 92977 --- [restartedMain] c.ticketing.TicketingGatewayApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-05-17T01:35:26.437-05:00  INFO 92977 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-17T01:35:26.438-05:00  INFO 92977 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-17T01:35:27.448-05:00  INFO 92977 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-17T01:35:27.593-05:00  INFO 92977 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 131 ms. Found 7 JPA repository interfaces.
+2025-05-17T01:35:28.287-05:00  INFO 92977 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8383 (http)
+2025-05-17T01:35:28.300-05:00  INFO 92977 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-17T01:35:28.300-05:00  INFO 92977 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2025-05-17T01:35:28.484-05:00  INFO 92977 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-17T01:35:28.488-05:00  INFO 92977 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-17T01:35:28.489-05:00  INFO 92977 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2051 ms
+2025-05-17T01:35:28.627-05:00  INFO 92977 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-17T01:35:28.664-05:00  INFO 92977 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2025-05-17T01:35:29.622-05:00  INFO 92977 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-05-17T01:35:29.627-05:00  WARN 92977 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-05-17T01:35:30.711-05:00  INFO 92977 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-17T01:35:30.719-05:00  INFO 92977 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-17T01:35:31.601-05:00  WARN 92977 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-17T01:35:31.887-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login?error']
+2025-05-17T01:35:31.898-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/login']
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/logout', POST]
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for ExactUrl [processUrl='/']
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/**']
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/test']
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/home']
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/create']
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/admin/users']
+2025-05-17T01:35:31.899-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/admin/users/list']
+2025-05-17T01:35:31.900-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/admin/managers/all']
+2025-05-17T01:35:31.900-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/admin/roles/all']
+2025-05-17T01:35:31.900-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/admin/departments/all']
+2025-05-17T01:35:31.900-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/admin/projects/all']
+2025-05-17T01:35:31.900-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/error']
+2025-05-17T01:35:31.900-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/save']
+2025-05-17T01:35:31.900-05:00 DEBUG 92977 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [authenticated] for any request
+2025-05-17T01:35:31.911-05:00  INFO 92977 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2c10167a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2103f195, org.springframework.security.web.context.SecurityContextHolderFilter@381154ce, org.springframework.security.web.header.HeaderWriterFilter@2555a635, org.springframework.security.web.authentication.logout.LogoutFilter@252bf4e3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5addf8a6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@157477b1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4f2fc3c6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6069e057, org.springframework.security.web.access.ExceptionTranslationFilter@78b3a4ae, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2d63b521]
+2025-05-17T01:35:32.295-05:00  WARN 92977 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-05-17T01:35:32.337-05:00  INFO 92977 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8383 (http) with context path ''
+2025-05-17T01:35:32.354-05:00  INFO 92977 --- [restartedMain] c.ticketing.TicketingGatewayApplication  : Started TicketingGatewayApplication in 6.468 seconds (process running for 7.557)
+2025-05-17T01:35:50.214-05:00  INFO 92977 --- [http-nio-8383-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-17T01:35:50.232-05:00  INFO 92977 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-17T01:35:50.242-05:00  INFO 92977 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2025-05-17T01:35:50.258-05:00 DEBUG 92977 --- [http-nio-8383-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/552/ticketList
+2025-05-17T01:35:50.286-05:00 DEBUG 92977 --- [http-nio-8383-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:35:50.299-05:00 DEBUG 92977 --- [http-nio-8383-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/552/ticketList] with attributes [permitAll]
+2025-05-17T01:35:50.301-05:00 DEBUG 92977 --- [http-nio-8383-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/552/ticketList
+2025-05-17T01:36:24.238-05:00 DEBUG 92977 --- [http-nio-8383-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/tickets/users/create/552
+2025-05-17T01:36:24.322-05:00 DEBUG 92977 --- [http-nio-8383-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:36:24.324-05:00 DEBUG 92977 --- [http-nio-8383-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/tickets/users/create/552] with attributes [permitAll]
+2025-05-17T01:36:24.325-05:00 DEBUG 92977 --- [http-nio-8383-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/tickets/users/create/552
+2025-05-17T01:36:24.829-05:00 DEBUG 92977 --- [http-nio-8383-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/552/ticketList
+2025-05-17T01:36:24.832-05:00 DEBUG 92977 --- [http-nio-8383-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:36:24.833-05:00 DEBUG 92977 --- [http-nio-8383-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/552/ticketList] with attributes [permitAll]
+2025-05-17T01:36:24.833-05:00 DEBUG 92977 --- [http-nio-8383-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/552/ticketList
+2025-05-17T01:36:31.459-05:00 DEBUG 92977 --- [http-nio-8383-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/ticket/8
+2025-05-17T01:36:31.472-05:00 DEBUG 92977 --- [http-nio-8383-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:36:31.474-05:00 DEBUG 92977 --- [http-nio-8383-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/ticket/8] with attributes [permitAll]
+2025-05-17T01:36:31.474-05:00 DEBUG 92977 --- [http-nio-8383-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/ticket/8
+2025-05-17T01:36:53.290-05:00 DEBUG 92977 --- [http-nio-8383-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/tickets/users/update/552/8
+2025-05-17T01:36:53.316-05:00 DEBUG 92977 --- [http-nio-8383-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:36:53.317-05:00 DEBUG 92977 --- [http-nio-8383-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/tickets/users/update/552/8] with attributes [permitAll]
+2025-05-17T01:36:53.317-05:00 DEBUG 92977 --- [http-nio-8383-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/tickets/users/update/552/8
+2025-05-17T01:36:53.617-05:00 DEBUG 92977 --- [http-nio-8383-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/552/ticketList
+2025-05-17T01:36:53.618-05:00 DEBUG 92977 --- [http-nio-8383-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:36:53.619-05:00 DEBUG 92977 --- [http-nio-8383-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/552/ticketList] with attributes [permitAll]
+2025-05-17T01:36:53.619-05:00 DEBUG 92977 --- [http-nio-8383-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/552/ticketList
+2025-05-17T01:36:56.610-05:00 DEBUG 92977 --- [http-nio-8383-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/ticket/8
+2025-05-17T01:36:56.613-05:00 DEBUG 92977 --- [http-nio-8383-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:36:56.614-05:00 DEBUG 92977 --- [http-nio-8383-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/ticket/8] with attributes [permitAll]
+2025-05-17T01:36:56.614-05:00 DEBUG 92977 --- [http-nio-8383-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/ticket/8
+2025-05-17T01:37:05.204-05:00 DEBUG 92977 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/tickets/users/update/552/8
+2025-05-17T01:37:05.255-05:00 DEBUG 92977 --- [http-nio-8383-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:37:05.257-05:00 DEBUG 92977 --- [http-nio-8383-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/tickets/users/update/552/8] with attributes [permitAll]
+2025-05-17T01:37:05.258-05:00 DEBUG 92977 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/tickets/users/update/552/8
+2025-05-17T01:37:05.551-05:00 DEBUG 92977 --- [http-nio-8383-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/552/ticketList
+2025-05-17T01:37:05.554-05:00 DEBUG 92977 --- [http-nio-8383-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:37:05.557-05:00 DEBUG 92977 --- [http-nio-8383-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/552/ticketList] with attributes [permitAll]
+2025-05-17T01:37:05.558-05:00 DEBUG 92977 --- [http-nio-8383-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/552/ticketList
+2025-05-17T01:37:07.228-05:00 DEBUG 92977 --- [http-nio-8383-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/ticket/8
+2025-05-17T01:37:07.230-05:00 DEBUG 92977 --- [http-nio-8383-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:37:07.231-05:00 DEBUG 92977 --- [http-nio-8383-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/ticket/8] with attributes [permitAll]
+2025-05-17T01:37:07.231-05:00 DEBUG 92977 --- [http-nio-8383-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/ticket/8
+2025-05-17T01:37:14.525-05:00 DEBUG 92977 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/552/ticketList
+2025-05-17T01:37:14.535-05:00 DEBUG 92977 --- [http-nio-8383-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:37:14.541-05:00 DEBUG 92977 --- [http-nio-8383-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/552/ticketList] with attributes [permitAll]
+2025-05-17T01:37:14.542-05:00 DEBUG 92977 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/552/ticketList
+2025-05-17T01:38:47.144-05:00 DEBUG 92977 --- [http-nio-8383-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/ticket/8
+2025-05-17T01:38:47.186-05:00 DEBUG 92977 --- [http-nio-8383-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:38:47.202-05:00 DEBUG 92977 --- [http-nio-8383-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/ticket/8] with attributes [permitAll]
+2025-05-17T01:38:47.202-05:00 DEBUG 92977 --- [http-nio-8383-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/ticket/8
+2025-05-17T01:38:58.769-05:00 DEBUG 92977 --- [http-nio-8383-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/tickets/users/update/552/8
+2025-05-17T01:38:58.808-05:00 DEBUG 92977 --- [http-nio-8383-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:38:58.817-05:00 DEBUG 92977 --- [http-nio-8383-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/tickets/users/update/552/8] with attributes [permitAll]
+2025-05-17T01:38:58.818-05:00 DEBUG 92977 --- [http-nio-8383-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/tickets/users/update/552/8
+2025-05-17T01:38:59.213-05:00 DEBUG 92977 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/552/ticketList
+2025-05-17T01:38:59.215-05:00 DEBUG 92977 --- [http-nio-8383-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:38:59.217-05:00 DEBUG 92977 --- [http-nio-8383-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/552/ticketList] with attributes [permitAll]
+2025-05-17T01:38:59.217-05:00 DEBUG 92977 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/552/ticketList
+2025-05-17T01:39:09.100-05:00 DEBUG 92977 --- [http-nio-8383-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/delete/8
+2025-05-17T01:39:09.117-05:00 DEBUG 92977 --- [http-nio-8383-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:39:09.119-05:00 DEBUG 92977 --- [http-nio-8383-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/delete/8] with attributes [permitAll]
+2025-05-17T01:39:09.119-05:00 DEBUG 92977 --- [http-nio-8383-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/delete/8
+2025-05-17T01:39:10.719-05:00 DEBUG 92977 --- [http-nio-8383-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/tickets/users/552/ticketList
+2025-05-17T01:39:10.727-05:00 DEBUG 92977 --- [http-nio-8383-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-05-17T01:39:10.732-05:00 DEBUG 92977 --- [http-nio-8383-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/tickets/users/552/ticketList] with attributes [permitAll]
+2025-05-17T01:39:10.732-05:00 DEBUG 92977 --- [http-nio-8383-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/tickets/users/552/ticketList
+2025-05-17T03:38:38.328-05:00  INFO 92977 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'

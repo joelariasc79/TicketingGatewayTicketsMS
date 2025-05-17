@@ -16,8 +16,8 @@ import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Role {
-	
-	@Id
+
+    @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long roleId;
 
@@ -29,49 +29,49 @@ public class Role {
     Set<User> user = new HashSet<>();
 
     public Role(Long roleId, RoleName roleName, Set<User> user) {
-		super();
-		this.roleId = roleId;
-		this.roleName = roleName;
-		this.user = user;
-	}
+        super();
+        this.roleId = roleId;
+        this.roleName = roleName;
+        this.user = user;
+    }
 
-	public enum RoleName {
+    public enum RoleName {
         USER,
         MANAGER,
         ADMIN
     }
 
-	public Long getRoleId() {
-		return roleId;
-	}
+    public Long getRoleId() {
+        return roleId;
+    }
 
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
-	
-	public RoleName getRoleName() {
-		return roleName;
-	}
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
 
-	public void setRoleName(RoleName roleName) {
-		this.roleName = roleName;
-	}
+    public RoleName getRoleName() {
+        return roleName;
+    }
 
-	public Set<User> getUser() {
-		return user;
-	}
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
+    }
 
-	public void setUser(Set<User> user) {
-		this.user = user;
-	}
+    public Set<User> getUser() {
+        return user;
+    }
 
-	public Role() {
-		super();
-	}
+    public void setUser(Set<User> user) {
+        this.user = user;
+    }
 
-	public boolean isEmpty() {
-		
-		return false;
-	}
-	
+    public Role() {
+        super();
+    }
+
+    public boolean isEmpty() {
+
+        return false;
+    }
+
 }

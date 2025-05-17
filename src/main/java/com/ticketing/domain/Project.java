@@ -19,10 +19,6 @@ public class Project {
 
     private String projectName;
 
-//    @OneToMany(mappedBy = "project")
-//    @JsonManagedReference
-//    private List<User> users;
-    
     @OneToMany(mappedBy = "project")
     @JsonManagedReference("projectUsers") // Choose a name and use it consistently
     private List<User> users; // Or whatever you've named the user list

@@ -1,25 +1,31 @@
 package com.ticketing.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-
-import jakarta.persistence.*;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 @Entity
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ticketId;
 
     private String title;
 
@@ -27,11 +33,13 @@ public class Ticket {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "created_by_employee_id")
+    @JoinColumn(name = "created_by_user_id")
+    @JsonBackReference("createdTickets") // Add this, use a unique name
     private User createdBy;
 
     @ManyToOne
-    @JoinColumn(name = "assignee_employee_id")
+    @JoinColumn(name = "assignee_user_id")
+    @JsonBackReference("assignedTickets") // Add this, use a unique name
     private User assignee;
 
     private String priority; // LOW, MEDIUM, HIGH
@@ -43,10 +51,14 @@ public class Ticket {
 
     private String category;
 
-    private String fileAttachmentPath;
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("history")
     private List<TicketHistory> history;
+
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("attachments")
+    private List<Attachment> attachments; // Add this line
 
     // Constructors
     public Ticket() {
@@ -63,12 +75,12 @@ public class Ticket {
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
+    public Long getTicketId() {
+        return ticketId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTicketId(Long ticketId) {
+        this.ticketId = ticketId;
     }
 
     public String getTitle() {
@@ -135,19 +147,39 @@ public class Ticket {
         this.category = category;
     }
 
-    public String getFileAttachmentPath() {
-        return fileAttachmentPath;
-    }
-
-    public void setFileAttachmentPath(String fileAttachmentPath) {
-        this.fileAttachmentPath = fileAttachmentPath;
-    }
-
     public List<TicketHistory> getHistory() {
         return history;
     }
 
     public void setHistory(List<TicketHistory> history) {
         this.history = history;
+    }
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
+    }
+
+    /**
+     * This method is called by JPA before the entity is persisted (saved).
+     * It sets the creationDate to the current time.
+     */
+    @PrePersist
+    protected void onCreate() {
+        creationDate = new Date();
+    }
+
+    /**
+     * This method is called by JPA before the entity is updated.
+     * It updates the creationDate to the current time.
+     * Note:  In most cases, you would *not* want to update the creationDate.
+     * This is included for completeness, but should be used with caution.
+     */
+    @PreUpdate
+    protected void onUpdate() {
+        creationDate = new Date();
     }
 }

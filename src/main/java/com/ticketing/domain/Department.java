@@ -17,18 +17,10 @@ public class Department {
     private Long departmentId;
 
     private String departmentName;
-    
-//    @OneToMany(mappedBy = "department")
-//    @JsonManagedReference("departmentUsers")
-//    private List<User> users;
-    
+
     @OneToMany(mappedBy = "department")
     @JsonManagedReference("departmentUsers") // Use the same name!
     private List<User> users;
-    
-//    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
-//    @JsonManagedReference("departmentUsers")
-//    private List<User> users;
 
     public Department() {
     }

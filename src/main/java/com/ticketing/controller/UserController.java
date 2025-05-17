@@ -88,6 +88,12 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
     
+    @GetMapping("/userName/{userName}")
+    public ResponseEntity<User> getUserByUserName(@PathVariable String userName, Model model) {
+        User user = userService.findByUserName(userName);
+        return ResponseEntity.ok(user);
+    }
+    
     @GetMapping("/list")
     public ResponseEntity<List<User>> listUsers() {
      List<User> users = userService.findAll();

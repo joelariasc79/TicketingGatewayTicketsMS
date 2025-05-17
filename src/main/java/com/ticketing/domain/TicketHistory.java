@@ -2,25 +2,30 @@ package com.ticketing.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.*;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.util.Date;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 @Entity
 public class TicketHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ticketHistoryId;
+
 
     @ManyToOne
     @JoinColumn(name = "ticket_id")
+    @JsonBackReference("history") // Add this, matching the @JsonManagedReference in Ticket
     private Ticket ticket;
 
     private String action; // CREATED, APPROVED, REJECTED, ASSIGNED, RESOLVED, CLOSED, REOPENED
@@ -48,12 +53,12 @@ public class TicketHistory {
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
+    public Long getTicketHistoryId() {
+        return ticketHistoryId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTicketHistoryId(Long ticketHistoryId) {
+        this.ticketHistoryId = ticketHistoryId;
     }
 
     public Ticket getTicket() {
@@ -94,5 +99,24 @@ public class TicketHistory {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    /**
+     * This method is called by JPA before the entity is persisted (saved).
+     * It sets the actionDate to the current time.
+     */
+    @PrePersist
+    protected void onCreate() {
+        actionDate = new Date();
+    }
+
+    /**
+     * This method is called by JPA before the entity is updated.
+     * It updates the actionDate to the current time.  This ensures that the
+     * actionDate reflects the last time the TicketHistory was modified.
+     */
+    @PreUpdate
+    protected void onUpdate() {
+        actionDate = new Date();
     }
 }

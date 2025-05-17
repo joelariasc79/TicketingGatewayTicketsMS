@@ -49,6 +49,15 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
+    
+//    public Long getUserIdByUsername(String username) {
+//        Optional<User> user = userRepository.findByUserName(username); // Assumes you have this method in your UserRepository
+//        if (user.isPresent()) {
+//            return user.get().getUserId(); //  Assuming your User class has a getUserId() method.
+//        } else {
+//            return null; // Or throw an exception, or handle the absence of the user as appropriate
+//        }
+//    }
 
     @Override
     public List<User> findAll() {

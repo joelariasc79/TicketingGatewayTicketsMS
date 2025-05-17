@@ -34,35 +34,42 @@ public class User {
     private String userPassword;
 
     private String email;
-        
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id", nullable = true)
     @JsonBackReference("managedUsers") // Use the same unique name
     private User manager; // Self-reference for manager
-    
+
     @OneToMany(mappedBy = "manager")
     @JsonManagedReference("managedUsers") // Give it a unique name
     private List<User> managedUsers;
-    
-    
+
+    @OneToMany(mappedBy = "createdBy")
+    @JsonManagedReference("createdTickets")
+    private List<Ticket> createdTickets;
+
+    @OneToMany(mappedBy = "assignee")
+    @JsonManagedReference("assignedTickets")
+    private List<Ticket> assignedTickets;
+
+
     @ManyToOne
     @JoinColumn(name = "department_id")
     @JsonBackReference("departmentUsers") // Add the value here!
     private Department department;
 
-    
+
     @ManyToOne
     @JoinColumn(name = "project_id")
-    @JsonBackReference
+    @JsonBackReference("projectUsers") // Ensure this matches the @JsonManagedReference in Project
     private Project project;
-    
-    
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @JsonManagedReference // This side will be fully serialized
+    @JsonManagedReference("userRoles") // Give this a unique name
     private Set<Role> roles = new HashSet<>();
 
     /*
@@ -119,13 +126,37 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public User getManager() {
         return manager;
     }
 
     public void setManager(User manager) {
         this.manager = manager;
+    }
+
+    public List<User> getManagedUsers() {
+        return managedUsers;
+    }
+
+    public void setManagedUsers(List<User> managedUsers) {
+        this.managedUsers = managedUsers;
+    }
+
+    public List<Ticket> getCreatedTickets() {
+        return createdTickets;
+    }
+
+    public void setCreatedTickets(List<Ticket> createdTickets) {
+        this.createdTickets = createdTickets;
+    }
+
+    public List<Ticket> getAssignedTickets() {
+        return assignedTickets;
+    }
+
+    public void setAssignedTickets(List<Ticket> assignedTickets) {
+        this.assignedTickets = assignedTickets;
     }
 
     public Department getDepartment() {
