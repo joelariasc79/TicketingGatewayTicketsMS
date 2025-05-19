@@ -48,6 +48,13 @@ public class TicketService {
     public List<Ticket> findByCreatedBy(Long createdByUserId) {
         return ticketRepository.findByCreatedBy_UserId(createdByUserId);
     }
+    
+    // 1.  If User has a direct manager field (e.g., manager_id in User table)
+    @Transactional(readOnly = true)
+    public List<Ticket> findTicketsByManager(User manager) {
+        // Find tickets created by users managed by the given manager.
+        return ticketRepository.findByCreatedBy_Manager_UserId(manager.getUserId());
+    }
 
     public List<Ticket> findByAssignee(Long assigneeUserId) {
         return ticketRepository.findByAssignee_UserId(assigneeUserId);

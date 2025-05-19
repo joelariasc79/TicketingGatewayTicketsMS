@@ -1,10 +1,13 @@
 package com.ticketing.repository;
 
 import com.ticketing.domain.Ticket;
+import com.ticketing.domain.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
@@ -23,6 +26,12 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findByDescriptionContainingIgnoreCase(String description);
     List<Ticket> findByCategoryIgnoreCase(String category);
     List<Ticket> findByCreationDateBetween(java.util.Date startDate, java.util.Date endDate);
+    
+    
+    List<Ticket> findByCreatedBy_Manager_UserId(Long managerUserId);
+//
+//    Optional<Ticket> findByTicketId(Long ticketId);
+    
 
     // Example of a more complex query using @Query (optional, for more control)
     /*

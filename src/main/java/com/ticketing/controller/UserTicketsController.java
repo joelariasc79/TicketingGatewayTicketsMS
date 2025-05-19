@@ -308,128 +308,192 @@ public class UserTicketsController {
         }
     }
     
+    
+    @PostMapping("/send/create/{userId}")
+    @Transactional
+    public ResponseEntity<?> sendCreateTicket(@PathVariable Long userId,
+                                         @RequestParam("title") String title,
+                                         @RequestParam("description") String description,
+                                         @RequestParam("priority") String priority,
+                                         @RequestParam("category") String category,
+                                         @RequestParam("comments") String comments,
+                                         @RequestParam(value = "files", required = false) MultipartFile[] files) {
+        try {
+            // 1. Fetch the User
+            Optional<User> userOptional = userService.findById(userId);
+            if (!userOptional.isPresent()) {
+                return ResponseEntity.badRequest().body(new ApiResponse(false, "User not found with ID: " + userId, null));
+            }
+            // 2. Use entityManager.merge() to ensure the User is managed within the current transaction
+            User createdByUser = entityManager.merge(userOptional.get());
 
-//    @PostMapping("/update/{userId}/{ticketId}")
-//    @Transactional
-//    public ResponseEntity<?> updateTicket(
-//            @PathVariable Long userId,
-//            @PathVariable Long ticketId,
-//            @RequestParam("title") String title,
-//            @RequestParam("description") String description,
-//            @RequestParam("priority") String priority,
-//            //@RequestParam("status") String status,  // Removed status parameter
-//            @RequestParam("category") String category,
-//            @RequestParam("comments") String comments,
-//            @RequestParam(value = "files", required = false) MultipartFile[] files) {
-//        try {
-//            // 1. Fetch the existing Ticket
-//            Optional<Ticket> ticketOptional = ticketService.findById(ticketId);
-//            if (!ticketOptional.isPresent()) {
-//                return ResponseEntity.badRequest().body(new ApiResponse(false, "Ticket not found with ID: " + ticketId, null));
-//            }
-//            Ticket existingTicket = ticketOptional.get();
-//            String currentStatus = existingTicket.getStatus();  // Get status from fetched ticket
-//
-//            // 2. Fetch the User
-//            Optional<User> userOptional = userService.findById(userId);
-//            if (!userOptional.isPresent()) {
-//                return ResponseEntity.badRequest().body(new ApiResponse(false, "User not found with ID: " + userId, null));
-//            }
-//            User updatedByUser = entityManager.merge(userOptional.get());
-//
-//
-//            // 3. Status Transition Logic and Updates
-//            String newStatus = currentStatus; // Default to the provided status.  Now defaults to null, which is handled below.
-//            if ("RESOLVED".equalsIgnoreCase(currentStatus)) {
-//                newStatus = "REOPENED"; // Change status to REOPENED
-//            } else if ("REOPENED".equalsIgnoreCase(currentStatus)) {
-//                newStatus = "REOPENED";
-//            }
-//            else if ("REJECTED".equalsIgnoreCase(currentStatus) || "CLOSED".equalsIgnoreCase(currentStatus)) {
-//                return ResponseEntity.badRequest().body(new ApiResponse(false, "Cannot update a " + currentStatus + " ticket", null));
-//            }
-//            else if ("OPEN".equalsIgnoreCase(currentStatus) || "PENDING_APPROVAL".equalsIgnoreCase(currentStatus)
-//                    || "APPROVED".equalsIgnoreCase(currentStatus) || "ASSIGNED".equalsIgnoreCase(currentStatus))
-//            {
-//                newStatus = "OPEN";
-//            }
-//
-//            //4. update fields
-//            existingTicket.setTitle(title);
-//            existingTicket.setDescription(description);
-//            existingTicket.setPriority(priority);
-//            existingTicket.setStatus(newStatus); // Use the determined newStatus
-//            existingTicket.setCategory(category);
-//
-//            Ticket updatedTicket = ticketService.save(existingTicket); // Save the updated ticket
-//
-//            // 5. Handle Attachments (Conditional based on status)
-//           if (!("REJECTED".equalsIgnoreCase(currentStatus) || "CLOSED".equalsIgnoreCase(currentStatus))) {
-//                List<Attachment> attachments = new ArrayList<>();
-//                if (files != null && files.length > 0) {
-//                    // Delete old attachments.
-//                    List<Attachment> existingAttachments = existingTicket.getAttachments();
-//                    if(existingAttachments != null){
-//                         for(Attachment attachment : existingAttachments){
-//                            attachmentService.delete(attachment);
-//                         }
-//                    }
-//                    for (MultipartFile file : files) {
-//                        if (!file.isEmpty()) {
-//                            String fileName = file.getOriginalFilename() + "_" + ticketId;
-//                            String fileType = file.getContentType();
-//                            byte[] bytes = file.getBytes();
-//                            String filePath = Paths.get(uploadDirectory, fileName).toString();
-//                            Path destinationPath = Paths.get(uploadDirectory, fileName);
-//                            Files.copy(file.getInputStream(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-//
-//                            Attachment attachment = new Attachment();
-//                            attachment.setFileName(fileName);
-//                            attachment.setFileType(fileType);
-//                            attachment.setData(bytes);
-//                            attachment.setFilePath(filePath);
-//                            attachment.setTicket(updatedTicket); // Use the updatedTicket
-//                            attachmentService.save(attachment);
-//                            attachments.add(attachment);
-//                        }
-//                    }
-//                updatedTicket.setAttachments(attachments);
-//                ticketService.save(updatedTicket);
-//                }
-//            }
-//
-//            // 6. Handle Ticket History (Conditional based on status transitions)
-//            if (!"REJECTED".equalsIgnoreCase(currentStatus)) {
-//                TicketHistory history = new TicketHistory();
-//                if ("RESOLVED".equalsIgnoreCase(currentStatus) && "REOPENED".equalsIgnoreCase(newStatus))
-//                {
-//                    history.setAction("REOPENED");
-//                }
-//                else{
-//                    history.setAction("UPDATED");
-//                }
-//
-//                history.setComments(comments);
-//                history.setTicket(updatedTicket); // Use updatedTicket
-//                history.setActionBy(updatedByUser);
-//                ticketHistoryService.save(history);
-//
-//                List<TicketHistory> historyList = updatedTicket.getHistory();
-//                if (historyList == null) {
-//                    historyList = new ArrayList<>();
-//                }
-//                historyList.add(history);
-//                updatedTicket.setHistory(historyList);
-//                ticketService.save(updatedTicket);
-//            }
-//
-//            // 7. Return a success response
-//            return ResponseEntity.ok(new ApiResponse(true, "Ticket updated successfully", updatedTicket.getTicketId()));
-//
-//        } catch (IOException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(false, "Failed to update ticket: " + e.getMessage(), null));
-//        }
-//    }
+            // 3. Create a new Ticket object
+            Ticket newTicket = new Ticket();
+            newTicket.setCreatedBy(createdByUser);
+            newTicket.setTitle(title);
+            newTicket.setDescription(description);
+            newTicket.setPriority(priority);
+            newTicket.setStatus("PENDING_APPROVAL"); // Set status to OPEN
+            newTicket.setCategory(category);
+
+            // 4. Save the new Ticket to generate its ID
+            Ticket savedTicket = ticketService.save(newTicket);
+            Long ticket_id = savedTicket.getTicketId();
+
+            // 5. Handle file uploads and create Attachment entities
+            List<Attachment> attachments = new ArrayList<>();
+            if (files != null && files.length > 0) {
+                for (MultipartFile file : files) {
+                    if (!file.isEmpty()) {
+                        String fileName = file.getOriginalFilename() + "_" + ticket_id;
+                        String fileType = file.getContentType();
+                        byte[] bytes = file.getBytes();
+
+                        String filePath = Paths.get(uploadDirectory, fileName).toString();
+                        Path destinationPath = Paths.get(uploadDirectory, fileName);
+                        Files.copy(file.getInputStream(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+                        Attachment attachment = new Attachment();
+                        attachment.setFileName(fileName);
+                        attachment.setFileType(fileType);
+                        attachment.setData(bytes);
+                        attachment.setFilePath(filePath);
+                        attachment.setTicket(savedTicket);
+                        attachmentService.save(attachment);
+                        attachments.add(attachment);
+                    }
+                }
+            }
+            savedTicket.setAttachments(attachments);
+            ticketService.save(savedTicket); // Save the ticket again to associate attachments
+
+            // 6. Create a TicketHistory record
+            TicketHistory createdHistory = new TicketHistory();
+            createdHistory.setAction("CREATED");
+            createdHistory.setComments(comments);
+            createdHistory.setTicket(savedTicket);
+            createdHistory.setActionBy(createdByUser);
+            ticketHistoryService.save(createdHistory);
+
+            // 7. Associate history with the ticket
+            List<TicketHistory> historyList = new ArrayList<>();
+            historyList.add(createdHistory);
+            savedTicket.setHistory(historyList);
+            ticketService.save(savedTicket); // Save again to associate history
+
+            // 8. Return a success response with the new ticket ID
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(new ApiResponse(true, "Ticket created successfully", savedTicket.getTicketId()));
+
+        } catch (IOException e) { // Catch IOException for file operations
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse(false, "Failed to create ticket: " + e.getMessage(), null));
+        }
+    }
+    
+    @PostMapping("/send/update/{userId}/{ticketId}")
+    @Transactional
+    public ResponseEntity<?> sendUpdateTicket(
+            @PathVariable Long userId,
+            @PathVariable Long ticketId,
+            @RequestParam("title") String title,
+            @RequestParam("description") String description,
+            @RequestParam("priority") String priority,
+            @RequestParam("category") String category,
+            @RequestParam("comments") String comments,
+            @RequestParam(value = "files", required = false) MultipartFile[] files) {
+        try {
+            Optional<Ticket> ticketOptional = ticketService.findById(ticketId);
+            if (!ticketOptional.isPresent()) {
+                return ResponseEntity.badRequest().body(new ApiResponse(false, "Ticket not found with ID: " + ticketId, null));
+            }
+            Ticket existingTicket = ticketOptional.get();
+            String currentStatus = existingTicket.getStatus();
+
+            Optional<User> userOptional = userService.findById(userId);
+            if (!userOptional.isPresent()) {
+                return ResponseEntity.badRequest().body(new ApiResponse(false, "User not found with ID: " + userId, null));
+            }
+            User updatedByUser = entityManager.merge(userOptional.get());
+
+            String newStatus = currentStatus;
+            if ("RESOLVED".equalsIgnoreCase(currentStatus)) {
+                newStatus = "PENDING_APPROVAL";
+            } else if ("REOPENED".equalsIgnoreCase(currentStatus)) {
+                newStatus = "PENDING_APPROVAL";
+            } else if ("REJECTED".equalsIgnoreCase(currentStatus) || "CLOSED".equalsIgnoreCase(currentStatus)) {
+                return ResponseEntity.badRequest().body(new ApiResponse(false, "Cannot update a " + currentStatus + " ticket", null));
+            } else if ("OPEN".equalsIgnoreCase(currentStatus) || "PENDING_APPROVAL".equalsIgnoreCase(currentStatus)
+                    || "APPROVED".equalsIgnoreCase(currentStatus) || "ASSIGNED".equalsIgnoreCase(currentStatus)) {
+                newStatus = "PENDING_APPROVAL";
+            }
+
+            existingTicket.setTitle(title);
+            existingTicket.setDescription(description);
+            existingTicket.setPriority(priority);
+            existingTicket.setStatus(newStatus);
+            existingTicket.setCategory(category);
+
+            Ticket updatedTicket = ticketService.save(existingTicket);
+
+            if (!("REJECTED".equalsIgnoreCase(currentStatus) || "CLOSED".equalsIgnoreCase(currentStatus))) {
+                if (files != null && files.length > 0) {
+                    Ticket mergedTicket = entityManager.merge(updatedTicket);
+
+                    if (mergedTicket.getAttachments() != null) {
+                        mergedTicket.getAttachments().clear();
+                    }
+
+                    for (MultipartFile file : files) {
+                        if (!file.isEmpty()) {
+                            String fileName = file.getOriginalFilename() + "_" + ticketId;
+                            String fileType = file.getContentType();
+                            byte[] bytes = file.getBytes();
+                            String filePath = Paths.get(uploadDirectory, fileName).toString();
+                            Path destinationPath = Paths.get(uploadDirectory, fileName);
+                            Files.copy(file.getInputStream(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+                            Attachment attachment = new Attachment();
+                            attachment.setFileName(fileName);
+                            attachment.setFileType(fileType);
+                            attachment.setData(bytes);
+                            attachment.setFilePath(filePath);
+                            attachment.setTicket(mergedTicket);
+                            mergedTicket.getAttachments().add(attachment);
+                        }
+                    }
+                    ticketService.save(mergedTicket);
+                }
+            }
+
+            if (!"REJECTED".equalsIgnoreCase(currentStatus)) {
+                TicketHistory history = new TicketHistory();
+                if ("RESOLVED".equalsIgnoreCase(currentStatus) && "REOPENED".equalsIgnoreCase(newStatus)) {
+                    history.setAction("REOPENED");
+                } else {
+                    history.setAction("UPDATED");
+                }
+
+                history.setComments(comments);
+                history.setTicket(updatedTicket);
+                history.setActionBy(updatedByUser);
+                ticketHistoryService.save(history);
+
+                List<TicketHistory> historyList = updatedTicket.getHistory();
+                if (historyList == null) {
+                    historyList = new ArrayList<>();
+                }
+                historyList.add(history);
+                updatedTicket.setHistory(historyList);
+                ticketService.save(updatedTicket);
+            }
+
+            return ResponseEntity.ok(new ApiResponse(true, "Ticket updated successfully", updatedTicket.getTicketId()));
+
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(false, "Failed to update ticket: " + e.getMessage(), null));
+        }
+    }
 
 
     @GetMapping("/tickets/{ticketId}/attachments")

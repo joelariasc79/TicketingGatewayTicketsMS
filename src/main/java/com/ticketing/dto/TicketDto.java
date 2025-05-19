@@ -12,7 +12,7 @@ public class TicketDto {
     private String description;
     private Long createdByUserId; // Only transfer the ID
     private String createdByUserName; // Optionally transfer the name
-    private Long assigneeUserId;   // Only transfer the ID
+    private Long assigneeUserId;     // Only transfer the ID
     private String assigneeUserName; // Optionally transfer the name
     private String priority;
     private String status;
@@ -20,18 +20,18 @@ public class TicketDto {
     private String category;
     private List<Attachment> attachments;
     private String latestComment;
-    
-//    private List<TicketHistoryDto> history; // DTO for history
-//    private List<TicketHistory> history; // DTO for history
+
+    //  private List<TicketHistoryDto> history; // DTO for history
+    //  private List<TicketHistory> history; // DTO for history
 
     // Constructors
     public TicketDto() {
     }
-    
 
-    public TicketDto(Long ticketId, String title, String description, Long createdByUserId, String createdByUserName, 
-    		Long assigneeUserId, String assigneeUserName, String priority, String status, Date creationDate, 
-    		String category) {
+
+    public TicketDto(Long ticketId, String title, String description, Long createdByUserId, String createdByUserName,
+            Long assigneeUserId, String assigneeUserName, String priority, String status, Date creationDate,
+            String category) {
         this.ticketId = ticketId;
         this.title = title;
         this.description = description;
@@ -44,10 +44,10 @@ public class TicketDto {
         this.creationDate = creationDate;
         this.category = category;
     }
-    
-    public TicketDto(Long ticketId, String title, String description, Long createdByUserId, String createdByUserName, 
-    		Long assigneeUserId, String assigneeUserName, String priority, String status, Date creationDate, 
-    		String category, String latestComment) {
+
+    public TicketDto(Long ticketId, String title, String description, Long createdByUserId, String createdByUserName,
+            Long assigneeUserId, String assigneeUserName, String priority, String status, Date creationDate,
+            String category, String latestComment, List<Attachment> attachments) {
         this.ticketId = ticketId;
         this.title = title;
         this.description = description;
@@ -60,27 +60,28 @@ public class TicketDto {
         this.creationDate = creationDate;
         this.category = category;
         this.latestComment = latestComment;
+        this.attachments = attachments;
     }
-    
-    
-    
-//    public TicketDto(Long ticketId, String title, String description, Long createdByUserId, String createdByUserName, 
-//    		Long assigneeUserId, String assigneeUserName, String priority, String status, Date creationDate, 
-//    		String category, List<Attachment> attachments, List<TicketHistoryDto> history) {
-//        this.ticketId = ticketId;
-//        this.title = title;
-//        this.description = description;
-//        this.createdByUserId = createdByUserId;
-//        this.createdByUserName = createdByUserName;
-//        this.assigneeUserId = assigneeUserId;
-//        this.assigneeUserName = assigneeUserName;
-//        this.priority = priority;
-//        this.status = status;
-//        this.creationDate = creationDate;
-//        this.category = category;
-//        this.attachments = attachments;
-//        this.history = history;
-//    }
+
+
+
+    //  public TicketDto(Long ticketId, String title, String description, Long createdByUserId, String createdByUserName,
+    //          Long assigneeUserId, String assigneeUserName, String priority, String status, Date creationDate,
+    //          String category, List<Attachment> attachments, List<TicketHistoryDto> history) {
+    //      this.ticketId = ticketId;
+    //      this.title = title;
+    //      this.description = description;
+    //      this.createdByUserId = createdByUserId;
+    //      this.createdByUserName = createdByUserName;
+    //      this.assigneeUserId = assigneeUserId;
+    //      this.assigneeUserName = assigneeUserName;
+    //      this.priority = priority;
+    //      this.status = status;
+    //      this.creationDate = creationDate;
+    //      this.category = category;
+    //      this.attachments = attachments;
+    //      this.history = history;
+    //  }
 
     // Getters and Setters
     public Long getTicketId() {
@@ -170,7 +171,7 @@ public class TicketDto {
     public void setCategory(String category) {
         this.category = category;
     }
-    
+
     public List<Attachment> getAttachments() {
         return attachments;
     }
@@ -179,27 +180,28 @@ public class TicketDto {
         this.attachments = attachments;
     }
 
-//    public String getFileAttachmentPath() {
-//        return fileAttachmentPath;
-//    }
-//
-//    public void setFileAttachmentPath(String fileAttachmentPath) {
-//        this.fileAttachmentPath = fileAttachmentPath;
-//    }
+    public String getLatestComment() {
+        return latestComment;
+    }
 
-//    public List<TicketHistoryDto> getHistory() {
-//        return history;
-//    }
-//    
-//    public void setHistory(List<TicketHistoryDto> history) {
-//        this.history = history;
-//    }
-    
-//    public List<TicketHistory> getHistory() {
-//        return history;
-//    }
-//
-//    public void setHistory(List<TicketHistory> history) {
-//        this.history = history;
-//    }
+    public void setLatestComment(String latestComment) {
+        this.latestComment = latestComment;
+    }
+
+
+    //  public List<TicketHistoryDto> getHistory() {
+    //      return history;
+    //  }
+    //
+    //  public void setHistory(List<TicketHistoryDto> history) {
+    //      this.history = history;
+    //  }
+    //
+    //  public List<TicketHistory> getHistory() {
+    //      return history;
+    //  }
+    //
+    //  public void setHistory(List<TicketHistory> history) {
+    //      this.history = history;
+    //  }
 }

@@ -1,6 +1,7 @@
 package com.ticketing.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     
  // Find users by both department ID and project ID
     List<User> findByDepartment_DepartmentIdAndProject_ProjectId(Long departmentId, Long projectId);
-
+    
+    
+    
+//    Optional<User> findById(Long userId);
 
 }

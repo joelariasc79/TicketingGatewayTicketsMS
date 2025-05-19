@@ -2,7 +2,7 @@ package com.ticketing.dto;
 
 import java.util.Set;
 
-public class NewUserDTO {
+public class UserDTO {
 
     private Long id;
     private String userName;
@@ -14,10 +14,16 @@ public class NewUserDTO {
     private Set<Long> roles; // Assuming you're passing Role IDs
 
     // Default Constructor
-    public NewUserDTO() {
+    public UserDTO() {
     }    
+    
+    public UserDTO(Long id, String userName) {
+		super();
+		this.id = id;
+		this.userName = userName;
+	}
 
-    public NewUserDTO(Long id, String userName, String email, String password, Long manager, Long department,
+    public UserDTO(Long id, String userName, String email, String password, Long manager, Long department,
 			Long project, Set<Long> roles) {
 		super();
 		this.id = id;
@@ -35,10 +41,16 @@ public class NewUserDTO {
 	public Long getId() {
         return id;
     }
+	
+	public Long getUserId() {
+        return id;
+    }
+	
 
     public void setId(Long id) {
         this.id = id;
     }
+    
 
     public String getUserName() {
         return userName;

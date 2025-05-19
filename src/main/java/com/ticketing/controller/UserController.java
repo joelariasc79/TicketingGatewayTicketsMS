@@ -35,7 +35,7 @@ import com.ticketing.domain.Department;
 import com.ticketing.domain.Project;
 import com.ticketing.domain.Role;
 import com.ticketing.domain.User;
-import com.ticketing.dto.NewUserDTO;
+import com.ticketing.dto.UserDTO;
 import com.ticketing.service.DepartmentService;
 import com.ticketing.service.ProjectService;
 import com.ticketing.service.RoleService;
@@ -72,7 +72,6 @@ public class UserController {
     @GetMapping()
     public String usersList(Model model) {
      model.addAttribute("formHeading", "Users Management");
-     model.addAttribute("userFormTitle", "Users Management");
 
      List<User> users = userService.findAll();
      model.addAttribute("users", users); // Add the users to the model
@@ -136,7 +135,7 @@ public class UserController {
     
     @PostMapping("/save")
     @ResponseBody
-    public ResponseEntity<ApiResponse> saveUser(@RequestBody NewUserDTO userUpdateRequest) {
+    public ResponseEntity<ApiResponse> saveUser(@RequestBody UserDTO userUpdateRequest) {
         try {
             User user;
             if (userUpdateRequest.getId() != null) {
