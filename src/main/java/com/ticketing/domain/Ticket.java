@@ -49,12 +49,11 @@ public class Ticket {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
-    private String category;
-
-
+    private String category;    
+    
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("history")
-    private List<TicketHistory> history;
+    @JsonManagedReference("history") 
+    private List<TicketHistory> history; 
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("attachments")

@@ -21,12 +21,11 @@ public class TicketHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ticketHistoryId;
-
-
+    
     @ManyToOne
     @JoinColumn(name = "ticket_id")
-    @JsonBackReference("history") // Add this, matching the @JsonManagedReference in Ticket
-    private Ticket ticket;
+    @JsonBackReference("history") 
+    private Ticket ticket; 
 
     private String action; // CREATED, APPROVED, REJECTED, ASSIGNED, RESOLVED, CLOSED, REOPENED
 

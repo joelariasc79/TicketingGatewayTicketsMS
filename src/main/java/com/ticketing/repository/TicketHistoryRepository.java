@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TicketHistoryRepository extends JpaRepository<TicketHistory, Long> {
@@ -14,6 +15,7 @@ public interface TicketHistoryRepository extends JpaRepository<TicketHistory, Lo
 
     // Custom query methods based on fields in the TicketHistory entity:
 
+	Optional<TicketHistory> findById(Long ticketHistoryId);
     List<TicketHistory> findByTicket_ticketId(Long ticket_ticketId);
     List<TicketHistory> findByActionBy_userId(Long actionBy_userId);
     List<TicketHistory> findByAction(String action);

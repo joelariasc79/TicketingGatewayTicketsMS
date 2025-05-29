@@ -5,11 +5,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate; 
 
 import com.ticketing.domain.Department;
 import com.ticketing.domain.Project;
 import com.ticketing.domain.User;
+
+import com.ticketing.dto.UserDto;
+
 import com.ticketing.repository.UserRepository;
 import com.ticketing.repository.DepartmentRepository;
 import com.ticketing.repository.ProjectRepository;
@@ -26,38 +31,41 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
     private ProjectRepository projectRepository;
+	
+	private final RestTemplate restTemplate;
 
+	
+	@Value("${userservice.url}") // Configure this in application.properties/yml (e.g., http://localhost:8081)
+    private String userServiceBaseUrl;
+	
+
+    public UserServiceImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+    
+    
+    public Optional<UserDto> getUserById(Long userId) {
+        String url = userServiceBaseUrl + "/api/users/" + userId;
+        try {
+            UserDto userDto = restTemplate.getForObject(url, UserDto.class);
+            return Optional.ofNullable(userDto);
+        } catch (Exception e) {
+            // Log error, handle specific exceptions (e.g., HttpClientErrorException for 404)
+            System.err.println("Error fetching user " + userId + ": " + e.getMessage());
+            return Optional.empty();
+        }
+    }
+	
     @Override
     public User save(User user) {
         return userRepository.save(user);
     }
     
-//    @Override
-//	public User save(User u) {
-//		HashSet<Role> roleSet = new HashSet<>();
-//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//		String hashedPassword = passwordEncoder.encode(u.getUserPassword());
-//		u.setUserPassword(hashedPassword);
-//		Role userRole = roleRepository.findById(1).orElse(null);
-//		roleSet.add(userRole);
-//		u.setRoles(roleSet);
-//		User user = userRepository.save(u);
-//		return user;
-//	}
 
     @Override
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
-    
-//    public Long getUserIdByUsername(String username) {
-//        Optional<User> user = userRepository.findByUserName(username); // Assumes you have this method in your UserRepository
-//        if (user.isPresent()) {
-//            return user.get().getUserId(); //  Assuming your User class has a getUserId() method.
-//        } else {
-//            return null; // Or throw an exception, or handle the absence of the user as appropriate
-//        }
-//    }
 
     @Override
     public List<User> findAll() {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ticketing.domain.Department;
 import com.ticketing.domain.Project;
 import com.ticketing.domain.User;
+import com.ticketing.dto.UserDto;
 
 
 
@@ -23,4 +24,5 @@ public interface UserService {
     List<Department> getAllDepartments();
     List<Project> getAllProjects();
     List<User> findUsersByDepartmentAndProject(Long departmentId, Long projectId);
+    Optional<UserDto> getUserById(Long userId);
 }
